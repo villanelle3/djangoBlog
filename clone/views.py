@@ -5,14 +5,25 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .models import User
+from django.views.generic.detail import DetailView
+from .models import User, Posts
+
 
 # @login_required
 def index(request):
     # if request.user.is_authenticated:
     #     return render(request, "clone/index.html", {})
     # return HttpResponseRedirect(reverse("login"))
-    return render(request, "clone/index.html", {"retorno": "Hello world!"})
+    queueset = Posts.objects.filter(status=1).order_by("-created_on")
+    return render(request, "clone/index2.html", {"post_list": queueset})
+
+def PostDetails(request, slug):
+    data = Posts.objects.filter(slug=slug).values('tittle', 'author', 'created_on', 'content')
+    return render(request, "clone/post_detail.html", {"data": data})
+
+class PostDetail(DetailView):
+    model = Posts
+    template_name = "clone/post_detail.html"
 
 
 def login_view(request):
