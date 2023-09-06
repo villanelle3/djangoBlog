@@ -12,7 +12,7 @@ def index(request):
     # if request.user.is_authenticated:
     #     return render(request, "clone/index.html", {})
     # return HttpResponseRedirect(reverse("login"))
-    return render(request, "clone/index.html", {})
+    return render(request, "clone/index.html", {"retorno": "Hello world!"})
 
 
 def login_view(request):
