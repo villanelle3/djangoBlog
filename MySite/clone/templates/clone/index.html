@@ -1,0 +1,30 @@
+{% extends "clone/layout.html" %}
+
+{% block body %}
+    <section class="content-item" id="comments">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    {% if user.is_authenticated %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h3 class="pull-left">New Post</h3>
+                        <input type="submit" class="btn btn-primary btn-sm pull-right" name="btn-postar" id="btn" value="Post"></input>
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                    <textarea class="form-control" id="message" placeholder="What's happening?" required name="postar"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    {% endif %}
+                    <h2>All posts</h2>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    TODO
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
